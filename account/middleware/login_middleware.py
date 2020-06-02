@@ -5,7 +5,7 @@ from django.utils.deprecation import MiddlewareMixin
 
 class IsLogin(MiddlewareMixin):     # 中间件检查，未登录且没有写入 list 的 url 头将会被重定向到 login 界面
     list = [
-        '/admin', '/account/login', '/account/register', '/account/get',
+        '/admin', '/account/login', 'ins', '/account/register', '/account/get',
         '/test',        # for developer to test new function remember to remove it when start server
     ]
 

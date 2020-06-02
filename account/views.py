@@ -48,6 +48,7 @@ def mail_check(mail_address):
 def login(request):
     try:
         login_data = simplejson.loads(request.body)
+        print(request)
     except:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
     try:
@@ -94,7 +95,7 @@ def register(request):
 def getMyInfo(request):
     if request.method == 'GET':
         try:
-            user = models.User.objects.get(pk=request.session['user_id'])
+            user = models.User.objects.get(u_tel=request.session['user_id'])
             package = {
                 'success': True,
                 'exc': '',
