@@ -167,7 +167,7 @@ def uploadAvatar(request):
 
 def getAllUsers(request):
     if(request.method == "GET"):
-       try:
+        try:
             data = simplejson.loads(request.body)
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
@@ -175,14 +175,15 @@ def getAllUsers(request):
         ret = []
         for user in allusers:
             ret.append(userToJson(user))
-    return JsonResponse({'success': True, 'exc': '', 'data':ret})
+    return JsonResponse({'success': True, 'exc': '', 'data': ret})
 
-def updateUser(request):
+
+def update(request):
     if (request.method == "POST"):
         try:
             data = simplejson.loads(request.body)
         except:
-            return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT',})
+            return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         user = models.User.objects.get(u_id=data["id"])
         n_user.u_tel = data['phone']
         n_user.u_name = data['name']
@@ -192,4 +193,4 @@ def updateUser(request):
         n_user.u_age = data['age']
         n_user.u_intro = data["intro"]
         n_user.save()
-    return JsonResponse({'success': True, 'exc': '', 'data':ret})
+    return JsonResponse({'success': True, 'exc': '', 'data': ret})
