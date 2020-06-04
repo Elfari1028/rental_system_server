@@ -1,13 +1,6 @@
 from django.db import models
 
 
-
-
-
-
-
-
-
 # 工单表
 class SupportRequest(models.Model):
     # 工单id
@@ -20,7 +13,7 @@ class SupportRequest(models.Model):
     sr_type = models.IntegerField(null=False)
 
     # 工单内容
-    sr_type = models.CharField(max_length=256, null=False)
+    sr_content = models.CharField(max_length=256, null=False)
 
     # 创建时间（自动生成，只读）
     sr_time = models.DateTimeField(auto_now_add=True, null=False)
@@ -80,4 +73,3 @@ class SupportRequestRating(models.Model):
     # 所属工单（外键）
     sr_id = models.ForeignKey(
         'SupportRequest', on_delete=models.CASCADE, null=False)
-
