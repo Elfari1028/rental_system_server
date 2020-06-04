@@ -86,7 +86,7 @@ def register(request):
     n_user.u_sex = register_data['sex']
     n_user.u_type = register_data['type']
     n_user.u_age = register_data['age']
-    n_user.u_intro = "none"
+    n_user.u_intro = resgister_data['intro']
     n_user.save()
     return JsonResponse({'success': True, 'exc': '', })
 
@@ -163,3 +163,33 @@ def uploadAvatar(request):
 
         return JsonResponse({'success': True, 'exc': '', 'data': user.u_avatar.url})
     return JsonResponse({'success': False, 'exc': 'POSTONLY'})
+
+
+def getAllUsers(request):
+    if(request.method == "GET"):
+       try:
+            data = simplejson.loads(request.body)
+        except:
+            return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
+        allusers = models.User.objects.all()
+        ret = []
+        for user in allusers:
+            ret.append(userToJson(user))
+    return JsonResponse({'success': True, 'exc': '', 'data':ret})
+
+def updateUser(request):
+    if (request.method == "POST"):
+        try:
+            data = simplejson.loads(request.body)
+        except:
+            return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT',})
+        user = models.User.objects.get(u_id=data["id"])
+        n_user.u_tel = data['phone']
+        n_user.u_name = data['name']
+        n_user.u_email = data['email']
+        n_user.u_sex = data['sex']
+        n_user.u_type = data['type']
+        n_user.u_age = data['age']
+        n_user.u_intro = data["intro"]
+        n_user.save()
+    return JsonResponse({'success': True, 'exc': '', 'data':ret})
