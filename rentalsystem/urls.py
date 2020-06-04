@@ -18,8 +18,11 @@ from django.urls import path, include, re_path
 from django.views.static import serve
 from django.conf import settings
 from account import views as account_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('account.urls')),
+    path('', include('picgroup.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

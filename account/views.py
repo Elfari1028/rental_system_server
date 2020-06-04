@@ -48,16 +48,15 @@ def mail_check(mail_address):
 def login(request):
     try:
         login_data = simplejson.loads(request.body)
-        print(request)
     except:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
     try:
         user = models.User.objects.get(u_tel=login_data['id'])
     except:
-        return JsonResponse({'success': False, 'exc': '用户不存在', })
+        return JsonResponse({'success': False, 'exc': 'ACCOUNT_404', })
     if user.u_passwd == hash_code(login_data['password']):
         request.session['is_login'] = True
-        request.session['user_id'] = user.u_tel
+        request.session['user_id'] = user.u_id
         return JsonResponse({'success': True, 'exc': '', 'data': userToJson(user), })
     else:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_PASSWORD', })
@@ -95,7 +94,7 @@ def register(request):
 def getMyInfo(request):
     if request.method == 'GET':
         try:
-            user = models.User.objects.get(u_tel=request.session['user_id'])
+            user = models.User.objects.get(u_id=request.session['user_id'])
             package = {
                 'success': True,
                 'exc': '',
@@ -111,15 +110,56 @@ def getMyInfo(request):
 
 
 def userToJson(user):
-    return {
-        "id": user.u_id,
-        "name": user.u_name,
-        "phone": user.u_tel,
-        "email": user.u_email,
-        "type": user.u_type,
-        "password": user.u_passwd,
-        "avatar": "none",
-        "sex": user.u_sex,
-        "age": user.u_age,
-        "intro": user.u_intro,
-    }
+    ret = {}
+    try:
+        ret = {
+            "id": user.u_id,
+            "name": user.u_name,
+            "phone": user.u_tel,
+            "email": user.u_email,
+            "type": user.u_type,
+            "password": user.u_passwd,
+            "avatar": user.u_avatar.url,
+            "sex": user.u_sex,
+            "age": user.u_age,
+            "intro": user.u_intro,
+        }
+        return ret
+    except:
+        ret = {
+            "id": user.u_id,
+            "name": user.u_name,
+            "phone": user.u_tel,
+            "email": user.u_email,
+            "type": user.u_type,
+            "password": user.u_passwd,
+            "avatar": "none",
+            "sex": user.u_sex,
+            "age": user.u_age,
+            "intro": user.u_intro,
+        }
+        return ret
+
+
+def uploadAvatar(request):
+    if request.POST:
+        status = request.session['id_login']
+        if status == False:
+            return JsonResponse({'success': False, 'exc': 'ACCOUNT_NOT_LOGGEDIN'})
+        uid = request.session['user_id']
+        try:
+            user = models.User.objects.get(u_id=uid)
+        except:
+            return JsonResponse({'success': False, 'exc': 'ACCOUNT_404', })
+        try:
+            img_file = request.FILES.get("avatar")
+        except:
+            return JsonResponse({'success': False, 'exc': 'AVATAR_FORM_FAIL', })
+        try:
+            user.u_avatar = img_file
+            user.save()
+        except:
+            return JsonResponse({'success': False, 'exc': 'UPLOAD_FAIL'})
+
+        return JsonResponse({'success': True, 'exc': '', 'data': user.u_avatar.url})
+    return JsonResponse({'success': False, 'exc': 'POSTONLY'})

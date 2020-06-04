@@ -25,7 +25,8 @@ SECRET_KEY = 'e_hcodqvll3t$%l1!!^%n01kp-7f6g^i93!3dp%(ryi^4b7wtr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0:8000', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0:8000',
+                 'localhost', 'back.cabin.com']
 
 CORS_ORIGIN_WHITELIST = (
     'http://*',
@@ -70,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'account',
+    'picgroup',
 ]
 
 MIDDLEWARE = [
@@ -102,7 +104,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'rentalsystem.wsgi.application'
-
+SESSION_SAVE_EVERY_REQUEST = True
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 pymysql.version_info = (1, 3, 13, "final", 0)
