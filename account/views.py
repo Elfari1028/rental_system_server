@@ -86,7 +86,7 @@ def register(request):
     n_user.u_sex = register_data['sex']
     n_user.u_type = register_data['type']
     n_user.u_age = register_data['age']
-    n_user.u_intro = resgister_data['intro']
+    n_user.u_intro = register_data['intro']
     n_user.save()
     return JsonResponse({'success': True, 'exc': '', })
 
@@ -111,6 +111,8 @@ def getMyInfo(request):
 
 def userToJson(user):
     ret = {}
+    if(user == None):
+        return None
     try:
         ret = {
             "id": user.u_id,
@@ -143,10 +145,7 @@ def userToJson(user):
 
 def uploadAvatar(request):
     if request.POST:
-        status = request.session['id_login']
-        if status == False:
-            return JsonResponse({'success': False, 'exc': 'ACCOUNT_NOT_LOGGEDIN'})
-        uid = request.session['user_id']
+        uid = request.POST['id']
         try:
             user = models.User.objects.get(u_id=uid)
         except:
@@ -167,10 +166,6 @@ def uploadAvatar(request):
 
 def getAllUsers(request):
     if(request.method == "GET"):
-        try:
-            data = simplejson.loads(request.body)
-        except:
-            return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         allusers = models.User.objects.all()
         ret = []
         for user in allusers:
@@ -184,13 +179,15 @@ def update(request):
             data = simplejson.loads(request.body)
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
-        user = models.User.objects.get(u_id=data["id"])
+        n_user = models.User.objects.get(u_id=data["id"])
         n_user.u_tel = data['phone']
         n_user.u_name = data['name']
         n_user.u_email = data['email']
         n_user.u_sex = data['sex']
         n_user.u_type = data['type']
         n_user.u_age = data['age']
-        n_user.u_intro = data["intro"]
+        n_user.u_intro = data['intro']
+        if(data['password']!=''):
+            n_user.password = hash_code(data['password'])
         n_user.save()
-    return JsonResponse({'success': True, 'exc': '', 'data': ret})
+    return JsonResponse({'success': True, 'exc': '', })

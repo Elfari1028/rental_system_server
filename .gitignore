@@ -88,7 +88,7 @@ venv.bak/
 /site 
 
 # mypy 
-image/
+images/
 
 # Sublime Text # 
 *.tmlanguage.cache 

@@ -72,6 +72,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'account',
     'picgroup',
+    'house',
+    'support'
 ]
 
 MIDDLEWARE = [

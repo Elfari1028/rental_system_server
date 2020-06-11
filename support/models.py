@@ -13,7 +13,7 @@ class SupportRequest(models.Model):
     sr_type = models.IntegerField(null=False)
 
     # 工单内容
-    sr_content = models.CharField(max_length=256, null=False)
+    sr_content = models.TextField(null=False)
 
     # 创建时间（自动生成，只读）
     sr_time = models.DateTimeField(auto_now_add=True, null=False)
@@ -21,22 +21,22 @@ class SupportRequest(models.Model):
     # 租客id,审核客服id,维修工id需要定义related_name，否则冲突
     # 租客id（外键）
     u_id = models.ForeignKey(
-        'User', on_delete=models.CASCADE, null=False, related_name='sr_u_id')
+        'account.User', on_delete=models.CASCADE, null=False, related_name='sr_u_id')
     
-    h_id = models.ForeignKey(
-        'House', on_delete=models.CASCADE, null=False, related_name='sr_u_id')
+    ro_id = models.ForeignKey(
+        'house.RentalOrder', on_delete=models.CASCADE, null=False, related_name='sr_h_id')
 
     # 图片组id（外键）
     pg_id = models.ForeignKey(
-        'PictureGroup', on_delete=models.CASCADE, null=True)
+        'picgroup.PictureGroup', on_delete=models.CASCADE, null=True)
 
     # 负责客服id（外键）
     res_u_id = models.ForeignKey(
-        'User', on_delete=models.CASCADE, null=True, related_name='sr_res_u_id')
+        'account.User', on_delete=models.CASCADE, null=True, related_name='sr_res_u_id')
 
     # 接入维修工（外键）
     fix_u_id = models.ForeignKey(
-        'User', on_delete=models.CASCADE, null=True, related_name='sr_fix_u_id')
+        'account.User', on_delete=models.CASCADE, null=True, related_name='sr_fix_u_id')
 
 
 # 工单回复表
@@ -55,11 +55,11 @@ class SupportRequestConversation(models.Model):
         'SupportRequest', on_delete=models.CASCADE, null=False, )
 
     # 用户id（外键）
-    u_id = models.ForeignKey('User', on_delete=models.CASCADE, null=False)
+    u_id = models.ForeignKey('account.User', on_delete=models.CASCADE, null=False)
 
     # 图片组id（外键）
     pg_id = models.ForeignKey(
-        'PictureGroup', on_delete=models.CASCADE, null=False)
+        'picgroup.PictureGroup', on_delete=models.CASCADE, null=False)
 
 
 # 工单评价表

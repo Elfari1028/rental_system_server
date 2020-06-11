@@ -54,7 +54,7 @@ def picsToPath(pg):
     return ret
 
 def upload(request):
-    if request.POST:
+    if request.method == "POST":
         img_file = request.FILES.getlist("image")
         pg = models.PictureGroup()
         try:
@@ -99,14 +99,14 @@ def remove(request):
     except:
         return JsonResponse({'success': False, 'exc': 'GROUP_404', })
     try:
-        setattr(pg, 'pg_'+str(pos), None)
+        setattr(group, 'pg_'+str(pos), None)
         for i in range(pos, ln-1):
-            setattr(pg, 'pg_' + str(i), getattr(pg, 'pg_' + str(i + 1)))
-        setattr(pg, 'pg_'+str(ln), None)
-        pg.save()
+            setattr(group, 'pg_' + str(i), getattr(pg, 'pg_' + str(i + 1)))
+        setattr(group, 'pg_'+str(ln), None)
+        group.save()
     except:
         return JsonResponse({'success': False, 'exc': 'APPEND_FAIL'})
-    return JsonResponse({'success': True, 'exc': '', 'id': pg.pg_id})
+    return JsonResponse({'success': True, 'exc': '', 'id': group.pg_id})
     
 
 def delete(request):

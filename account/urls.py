@@ -11,6 +11,6 @@ urlpatterns = [
         path('get/', views.getMyInfo, name='getMyInfo'),
         path('getall/', views.getAllUsers, name='getall'),
         path('update/', views.update, name='update'),
-        path('avatar/',views.update, name='updateAvatar'),
+        path('avatar/',views.uploadAvatar, name='updateAvatar'),
     ])),
 ]

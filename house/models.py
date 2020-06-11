@@ -1,9 +1,14 @@
 from django.db.models.aggregates import Count
 from random import randint
 from django.db import models
-
 # 房源表
 
+
+class RandomManager(models.Manager):
+    def random(self):
+        count = self.aggregate(count=Count('id'))['count']
+        random_index = randint(0, count - 1)
+        return self.all()[random_index]
 
 class House(models.Model):
     # 房屋id
@@ -32,16 +37,13 @@ class House(models.Model):
 
     # 图片组id
     pg_id = models.ForeignKey(
-        'PictureGroup', on_delete=models.CASCADE, null=False)
+        'picgroup.PictureGroup', on_delete=models.CASCADE, null=False)
 
+    objects = models.Manager()
+    
     randoms = RandomManager()
 
 
-class RandomManager(models.Manager):
-    def random(self):
-        count = self.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return self.all()[random_index]
 
 # 订单表
 
@@ -71,11 +73,11 @@ class RentalOrder(models.Model):
     # 租客和审核客服id需要定义related_name，否则冲突
     # 租客id（外键）
     u_id = models.ForeignKey(
-        'User', on_delete=models.CASCADE, null=False, related_name='ro_u_id')
+        'account.User', on_delete=models.CASCADE, null=False, related_name='ro_u_id')
 
     # 房屋id（外键）
     h_id = models.ForeignKey('House', on_delete=models.CASCADE, null=False)
 
     # 审核客服（外键）
     res_u_id = models.ForeignKey(
-        'User', on_delete=models.CASCADE, null=True, related_name='ro_res_u_id')
+        'account.User', on_delete=models.CASCADE, null=True, related_name='ro_res_u_id')
