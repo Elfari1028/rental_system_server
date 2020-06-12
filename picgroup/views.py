@@ -55,12 +55,13 @@ def picsToPath(pg):
 
 def upload(request):
     if request.method == "POST":
-        img_file = request.FILES.getlist("image")
+        img_file = request.FILES.getlist("image[]")
         pg = models.PictureGroup()
         try:
-            for i in range(1, len(img_file) + 1):
+            print(len(img_file))
+            for i in range(0, len(img_file)):
                 f = img_file[i]
-                setattr(pg, 'pg_'+str(i), img_file[i])
+                setattr(pg, 'pg_'+str(i+1), img_file[i])
             pg.save()
         except:
             return JsonResponse({'success': False, 'exc': 'UPLOAD_FAIL'})

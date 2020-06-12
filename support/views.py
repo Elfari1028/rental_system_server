@@ -17,6 +17,21 @@ from account.models import User
 from house.views import houseAsJson,orderToJson
 from account.views import userToJson
 # POST send request
+
+def getallRqs(request):
+    if(request.method == 'GET'):
+        try:
+            rqs = models.SupportRequest.objects.all()
+        except:
+            return JsonResponse({'success':False,'exc':'GET ALL FAIL'})
+        ret = []
+        try:
+            for rq in rqs:
+                ret.append(supportRequestToJson(rq))
+        except:
+            return JsonResponse({'success':False,'exc':'ADD ALL FAIL'})
+        return JsonResponse({'success':True,'data':ret})
+
 def createRequest(request):
     try: 
         requestdata= simplejson.loads(request.body)
@@ -31,7 +46,7 @@ def createRequest(request):
     except: 
         return JsonResponse({'success': False, 'exc': 'USER_ID_404', })
     try:
-        newRequest = models.SupportRequest()
+        newRequest = models.SupportRequest()    
         newRequest.u_id = user
         newRequest.sr_type = requestdata['type']
         newRequest.sr_status = requestdata['status']
@@ -66,6 +81,7 @@ def replyToRequest(request):
     if(requestdata["pgid"] != -1):
         try:
             pg = PictureGroup.objects.get(pg_id=requestdata['pgid'])
+            reply.pg_id = pg
         except:
             return JsonResponse({'success': False, 'exc': 'PG_ID_404', })
     try:
@@ -73,12 +89,11 @@ def replyToRequest(request):
     except:
         return JsonResponse({'success': False, 'exc': 'SR_ID_404', })
     try:
-        user = models.SupportRequest.objects.get(sr_id=requestdata['srid'])
+        user = User.objects.get(u_id=request.session['user_id'])
     except:
-        return JsonResponse({'success': False, 'exc': 'SR_ID_404', })
+        return JsonResponse({'success': False, 'exc': 'QR_ID_404', })
     
     try:
-        reply.pg_id = pg
         reply.sr_id = sr
         reply.u_id = user
         reply.src_content = requestdata['content']
@@ -91,19 +106,19 @@ def replyToJson(reply):
     pgid = None
     imagePaths = None 
     try:
-        picgroup = PictureGroup.objects.get(pg_id=reply.pg_id)
+        picgroup = reply.pg_id
         pgid = picgroup.pg_id
         imagePaths = picsToPath(picgroup)
     except:
         picgroup = None
     return {
-        'id':reply.sr_id,
-        'content':reply.sr_content,
+        'id':reply.src_id,
+        'content':reply.src_content,
         'pgid': pgid,
-        'imagePaths' : imagePaths,
-        'uid':reply.u_id,
+        'images' : imagePaths,
+        'user':userToJson(reply.u_id),
         'time':reply.src_time,
-        'srid': reply.sr_id
+        'srid': reply.sr_id.sr_id  
     }
 
 def supportRequestToJson(support):
@@ -111,11 +126,13 @@ def supportRequestToJson(support):
     service = None
     maintenance = None
     order = None
+    pg = None
     try:
         order = support.ro_id
         rentee = support.u_id
         service = support.res_u_id
         maintenance = support.fix_u_id
+        pg = support.pg_id
     except:
         print(sys.exc_info()) 
     return {
@@ -123,8 +140,10 @@ def supportRequestToJson(support):
         'status': support.sr_status,
         'type':support.sr_type,
         'content':support.sr_content,
-        'create': supportRequestToJson.create,
+        'create': support.sr_time,
         'order': orderToJson(order),
+        'pgid': pg.pg_id,
+        'images': picsToPath(pg),
         'rentee': userToJson(rentee),
         'maintenance': userToJson(maintenance),
         'respondant':userToJson(service),
@@ -138,14 +157,15 @@ def getConverstation(request):
     except:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
     try:
-        sr = models.SupportRequest.objects.get(sr_id=data['srid'])
+        sr = models.SupportRequest.objects.get(sr_id=data['id'])
     except:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
     try:
-        replies = models.SupportRequest.objects.filter(sr_id=data['srid'])
+        replies = models.SupportRequestConversation.objects.filter(sr_id=data['id'])
     except:
         return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
     jsonreplies = []
     for element in replies:
         jsonreplies.append(replyToJson(element))
+    return JsonResponse({'success':True,'data':jsonreplies})
     

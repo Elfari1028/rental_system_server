@@ -32,11 +32,11 @@ class SupportRequest(models.Model):
 
     # 负责客服id（外键）
     res_u_id = models.ForeignKey(
-        'account.User', on_delete=models.CASCADE, null=True, related_name='sr_res_u_id')
+        'account.User', on_delete=models.CASCADE,blank=True, null=True, related_name='sr_res_u_id')
 
     # 接入维修工（外键）
     fix_u_id = models.ForeignKey(
-        'account.User', on_delete=models.CASCADE, null=True, related_name='sr_fix_u_id')
+        'account.User', on_delete=models.CASCADE,blank=True,null=True, related_name='sr_fix_u_id')
 
 
 # 工单回复表
@@ -45,7 +45,7 @@ class SupportRequestConversation(models.Model):
     src_id = models.AutoField(primary_key=True)
 
     # 回复内容
-    src_content = models.CharField(max_length=256, null=False)
+    src_content = models.TextField(null=False)
 
     # 回复时间（自动生成，只读）
     src_time = models.DateTimeField(auto_now_add=True, null=False)
@@ -59,7 +59,7 @@ class SupportRequestConversation(models.Model):
 
     # 图片组id（外键）
     pg_id = models.ForeignKey(
-        'picgroup.PictureGroup', on_delete=models.CASCADE, null=False)
+        'picgroup.PictureGroup', on_delete=models.CASCADE,blank=True, null=True)
 
 
 # 工单评价表
