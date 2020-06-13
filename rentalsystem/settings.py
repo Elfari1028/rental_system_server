@@ -26,7 +26,7 @@ SECRET_KEY = 'e_hcodqvll3t$%l1!!^%n01kp-7f6g^i93!3dp%(ryi^4b7wtr'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0:8000',
-                 'localhost', 'back.cabin.com']
+                 'localhost', 'back.cabin.com','39.97.104.62']
 
 CORS_ORIGIN_WHITELIST = (
     'http://*',

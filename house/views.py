@@ -29,7 +29,6 @@ def create(request):
             return JsonResponse({'success': False, 'exc': 'PG_ID_404', })
         try:
             house = models.House()
-            house.h_id = data['id']
             house.h_title = data['title']
             house.h_cap = data['cap']
             house.h_term = data['term']
