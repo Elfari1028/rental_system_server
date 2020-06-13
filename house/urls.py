@@ -8,8 +8,9 @@ urlpatterns = [
         path('create/', views.create, name='create'),
         path('getall/', views.getAllHouses, name='getall'),
         # path('suspend/', views.suspend, name='suspend'),
+        path('available/',views.getAvailHouses,name='get avail'),
         path('update/', views.update, name='update'),
-        path('search/', views.update, name='search'),
+        # path('search/', views.update, name='search'),
     ])),
      path('order/', include([
         path('create/', views.createOrder, name='createorder'),

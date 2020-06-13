@@ -158,7 +158,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, '')
+STATICFILES_DIRS = ( os.path.join('static'), )
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 SESSION_COOKIE_NAME = "sessionid"       # Session的cookie保存在浏览器上时的key
 SESSION_COOKIE_PATH = "/"               # Session的cookie保存的路径(默认)

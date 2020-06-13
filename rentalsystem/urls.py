@@ -26,5 +26,6 @@ urlpatterns = [
     path('', include('picgroup.urls')),
     path('',include('house.urls')),
     path('',include('support.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), 
+    path('static/',serve,{"document_root":settings.STATIC_ROOT})
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
