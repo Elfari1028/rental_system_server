@@ -267,7 +267,7 @@ def appointFix(request):
             if(res.u_type != 2):
                 return JsonResponse({'success': False, 'exc': 'WRONG ACCOUNT PRIV', })
             rq.sr_status =  3
-            rq.res_u_id = res
+            rq.fix_u_id = res
             rq.save()
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })

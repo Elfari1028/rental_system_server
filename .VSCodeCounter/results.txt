@@ -1,12 +1,12 @@
-Date : 2020-06-13 09:54:46
+Date : 2020-06-14 17:37:56
 Directory : d:\Projects\rental_system_server
-Total : 55 files,  1278 codes, 145 comments, 312 blanks, all 1735 lines
+Total : 48 files,  1172 codes, 139 comments, 269 blanks, all 1580 lines
 
 Languages
 +----------+------------+------------+------------+------------+------------+
 | language | files      | code       | comment    | blank      | total      |
 +----------+------------+------------+------------+------------+------------+
-| Python   |         50 |      1,233 |        145 |        312 |      1,690 |
+| Python   |         43 |      1,127 |        139 |        269 |      1,535 |
 | XML      |          4 |         44 |          0 |          0 |         44 |
 | Markdown |          1 |          1 |          0 |          0 |          1 |
 +----------+------------+------------+------------+------------+------------+
@@ -15,19 +15,19 @@ Directories
 +---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                            | files      | code       | comment    | blank      | total      |
 +---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                               |         55 |      1,278 |        145 |        312 |      1,735 |
+| .                                                                               |         48 |      1,172 |        139 |        269 |      1,580 |
 | .idea                                                                           |          4 |         44 |          0 |          0 |         44 |
 | .idea\inspectionProfiles                                                        |          1 |          6 |          0 |          0 |          6 |
-| account                                                                         |         11 |        240 |         20 |         70 |        330 |
+| account                                                                         |         10 |        217 |         19 |         63 |        299 |
 | account\middleware                                                              |          1 |         15 |          0 |          4 |         19 |
-| account\migrations                                                              |          2 |         23 |          1 |          8 |         32 |
-| house                                                                           |         11 |        293 |         29 |         76 |        398 |
-| house\migrations                                                                |          3 |         55 |          2 |         14 |         71 |
-| picgroup                                                                        |         10 |        182 |          7 |         39 |        228 |
-| picgroup\migrations                                                             |          2 |         22 |          1 |          8 |         31 |
+| account\migrations                                                              |          1 |          0 |          0 |          1 |          1 |
+| house                                                                           |          9 |        272 |         28 |         63 |        363 |
+| house\migrations                                                                |          1 |          0 |          0 |          1 |          1 |
+| picgroup                                                                        |          9 |        160 |          6 |         32 |        198 |
+| picgroup\migrations                                                             |          1 |          0 |          0 |          1 |          1 |
 | rentalsystem                                                                    |          5 |        141 |         58 |         40 |        239 |
-| support                                                                         |         12 |        362 |         29 |         82 |        473 |
-| support\migrations                                                              |          4 |         95 |          3 |         20 |        118 |
+| support                                                                         |          9 |        322 |         26 |         66 |        414 |
+| support\migrations                                                              |          1 |          0 |          0 |          1 |          1 |
 +---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
@@ -44,7 +44,6 @@ Files
 | d:\Projects\rental_system_server\account\apps.py                                | Python   |          3 |          0 |          3 |          6 |
 | d:\Projects\rental_system_server\account\json_package.py                        | Python   |          1 |          0 |          1 |          2 |
 | d:\Projects\rental_system_server\account\middleware\login_middleware.py         | Python   |         15 |          0 |          4 |         19 |
-| d:\Projects\rental_system_server\account\migrations\0001_initial.py             | Python   |         23 |          1 |          7 |         31 |
 | d:\Projects\rental_system_server\account\migrations\__init__.py                 | Python   |          0 |          0 |          1 |          1 |
 | d:\Projects\rental_system_server\account\models.py                              | Python   |         15 |         12 |         14 |         41 |
 | d:\Projects\rental_system_server\account\tests.py                               | Python   |          1 |          1 |          2 |          4 |
@@ -54,19 +53,16 @@ Files
 | d:\Projects\rental_system_server\house\admin.py                                 | Python   |         14 |          1 |          7 |         22 |
 | d:\Projects\rental_system_server\house\apps.py                                  | Python   |          3 |          0 |          3 |          6 |
 | d:\Projects\rental_system_server\house\json_package.py                          | Python   |          1 |          0 |          1 |          2 |
-| d:\Projects\rental_system_server\house\migrations\0001_initial.py               | Python   |         43 |          1 |          7 |         51 |
-| d:\Projects\rental_system_server\house\migrations\0002_auto_20200612_0242.py    | Python   |         12 |          1 |          6 |         19 |
 | d:\Projects\rental_system_server\house\migrations\__init__.py                   | Python   |          0 |          0 |          1 |          1 |
 | d:\Projects\rental_system_server\house\models.py                                | Python   |         34 |         22 |         28 |         84 |
 | d:\Projects\rental_system_server\house\tests.py                                 | Python   |          1 |          1 |          2 |          4 |
-| d:\Projects\rental_system_server\house\urls.py                                  | Python   |         18 |          2 |          2 |         22 |
-| d:\Projects\rental_system_server\house\views.py                                 | Python   |        167 |          1 |         18 |        186 |
+| d:\Projects\rental_system_server\house\urls.py                                  | Python   |         18 |          3 |          2 |         23 |
+| d:\Projects\rental_system_server\house\views.py                                 | Python   |        201 |          1 |         18 |        220 |
 | d:\Projects\rental_system_server\manage.py                                      | Python   |         15 |          2 |          5 |         22 |
 | d:\Projects\rental_system_server\picgroup\__init__.py                           | Python   |          0 |          0 |          1 |          1 |
 | d:\Projects\rental_system_server\picgroup\admin.py                              | Python   |          8 |          1 |          4 |         13 |
 | d:\Projects\rental_system_server\picgroup\apps.py                               | Python   |          3 |          0 |          3 |          6 |
 | d:\Projects\rental_system_server\picgroup\json_package.py                       | Python   |          1 |          0 |          0 |          1 |
-| d:\Projects\rental_system_server\picgroup\migrations\0001_initial.py            | Python   |         22 |          1 |          7 |         30 |
 | d:\Projects\rental_system_server\picgroup\migrations\__init__.py                | Python   |          0 |          0 |          1 |          1 |
 | d:\Projects\rental_system_server\picgroup\models.py                             | Python   |         24 |          3 |          5 |         32 |
 | d:\Projects\rental_system_server\picgroup\tests.py                              | Python   |          1 |          1 |          2 |          4 |
@@ -81,13 +77,10 @@ Files
 | d:\Projects\rental_system_server\support\admin.py                               | Python   |         20 |          1 |          9 |         30 |
 | d:\Projects\rental_system_server\support\apps.py                                | Python   |          3 |          0 |          3 |          6 |
 | d:\Projects\rental_system_server\support\json_package.py                        | Python   |          1 |          0 |          0 |          1 |
-| d:\Projects\rental_system_server\support\migrations\0001_initial.py             | Python   |         46 |          1 |          7 |         54 |
-| d:\Projects\rental_system_server\support\migrations\0002_auto_20200612_0242.py  | Python   |         19 |          1 |          6 |         26 |
-| d:\Projects\rental_system_server\support\migrations\0003_auto_20200612_1725.py  | Python   |         30 |          1 |          6 |         37 |
 | d:\Projects\rental_system_server\support\migrations\__init__.py                 | Python   |          0 |          0 |          1 |          1 |
 | d:\Projects\rental_system_server\support\models.py                              | Python   |         32 |         23 |         24 |         79 |
 | d:\Projects\rental_system_server\support\tests.py                               | Python   |          1 |          1 |          2 |          4 |
-| d:\Projects\rental_system_server\support\urls.py                                | Python   |         11 |          0 |          2 |         13 |
-| d:\Projects\rental_system_server\support\views.py                               | Python   |        199 |          1 |         21 |        221 |
-| Total                                                                           |          |      1,278 |        145 |        312 |      1,735 |
+| d:\Projects\rental_system_server\support\urls.py                                | Python   |         15 |          0 |          2 |         17 |
+| d:\Projects\rental_system_server\support\views.py                               | Python   |        250 |          1 |         24 |        275 |
+| Total                                                                           |          |      1,172 |        139 |        269 |      1,580 |
 +---------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

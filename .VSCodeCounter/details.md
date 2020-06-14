@@ -1,10 +1,10 @@
 # Details
 
-Date : 2020-06-13 09:54:46
+Date : 2020-06-14 17:37:56
 
 Directory d:\Projects\rental_system_server
 
-Total : 55 files,  1278 codes, 145 comments, 312 blanks, all 1735 lines
+Total : 48 files,  1172 codes, 139 comments, 269 blanks, all 1580 lines
 
 [summary](results.md)
 
@@ -21,7 +21,6 @@ Total : 55 files,  1278 codes, 145 comments, 312 blanks, all 1735 lines
 | [account/apps.py](/account/apps.py) | Python | 3 | 0 | 3 | 6 |
 | [account/json_package.py](/account/json_package.py) | Python | 1 | 0 | 1 | 2 |
 | [account/middleware/login_middleware.py](/account/middleware/login_middleware.py) | Python | 15 | 0 | 4 | 19 |
-| [account/migrations/0001_initial.py](/account/migrations/0001_initial.py) | Python | 23 | 1 | 7 | 31 |
 | [account/migrations/__init__.py](/account/migrations/__init__.py) | Python | 0 | 0 | 1 | 1 |
 | [account/models.py](/account/models.py) | Python | 15 | 12 | 14 | 41 |
 | [account/tests.py](/account/tests.py) | Python | 1 | 1 | 2 | 4 |
@@ -31,19 +30,16 @@ Total : 55 files,  1278 codes, 145 comments, 312 blanks, all 1735 lines
 | [house/admin.py](/house/admin.py) | Python | 14 | 1 | 7 | 22 |
 | [house/apps.py](/house/apps.py) | Python | 3 | 0 | 3 | 6 |
 | [house/json_package.py](/house/json_package.py) | Python | 1 | 0 | 1 | 2 |
-| [house/migrations/0001_initial.py](/house/migrations/0001_initial.py) | Python | 43 | 1 | 7 | 51 |
-| [house/migrations/0002_auto_20200612_0242.py](/house/migrations/0002_auto_20200612_0242.py) | Python | 12 | 1 | 6 | 19 |
 | [house/migrations/__init__.py](/house/migrations/__init__.py) | Python | 0 | 0 | 1 | 1 |
 | [house/models.py](/house/models.py) | Python | 34 | 22 | 28 | 84 |
 | [house/tests.py](/house/tests.py) | Python | 1 | 1 | 2 | 4 |
-| [house/urls.py](/house/urls.py) | Python | 18 | 2 | 2 | 22 |
-| [house/views.py](/house/views.py) | Python | 167 | 1 | 18 | 186 |
+| [house/urls.py](/house/urls.py) | Python | 18 | 3 | 2 | 23 |
+| [house/views.py](/house/views.py) | Python | 201 | 1 | 18 | 220 |
 | [manage.py](/manage.py) | Python | 15 | 2 | 5 | 22 |
 | [picgroup/__init__.py](/picgroup/__init__.py) | Python | 0 | 0 | 1 | 1 |
 | [picgroup/admin.py](/picgroup/admin.py) | Python | 8 | 1 | 4 | 13 |
 | [picgroup/apps.py](/picgroup/apps.py) | Python | 3 | 0 | 3 | 6 |
 | [picgroup/json_package.py](/picgroup/json_package.py) | Python | 1 | 0 | 0 | 1 |
-| [picgroup/migrations/0001_initial.py](/picgroup/migrations/0001_initial.py) | Python | 22 | 1 | 7 | 30 |
 | [picgroup/migrations/__init__.py](/picgroup/migrations/__init__.py) | Python | 0 | 0 | 1 | 1 |
 | [picgroup/models.py](/picgroup/models.py) | Python | 24 | 3 | 5 | 32 |
 | [picgroup/tests.py](/picgroup/tests.py) | Python | 1 | 1 | 2 | 4 |
@@ -58,13 +54,10 @@ Total : 55 files,  1278 codes, 145 comments, 312 blanks, all 1735 lines
 | [support/admin.py](/support/admin.py) | Python | 20 | 1 | 9 | 30 |
 | [support/apps.py](/support/apps.py) | Python | 3 | 0 | 3 | 6 |
 | [support/json_package.py](/support/json_package.py) | Python | 1 | 0 | 0 | 1 |
-| [support/migrations/0001_initial.py](/support/migrations/0001_initial.py) | Python | 46 | 1 | 7 | 54 |
-| [support/migrations/0002_auto_20200612_0242.py](/support/migrations/0002_auto_20200612_0242.py) | Python | 19 | 1 | 6 | 26 |
-| [support/migrations/0003_auto_20200612_1725.py](/support/migrations/0003_auto_20200612_1725.py) | Python | 30 | 1 | 6 | 37 |
 | [support/migrations/__init__.py](/support/migrations/__init__.py) | Python | 0 | 0 | 1 | 1 |
 | [support/models.py](/support/models.py) | Python | 32 | 23 | 24 | 79 |
 | [support/tests.py](/support/tests.py) | Python | 1 | 1 | 2 | 4 |
-| [support/urls.py](/support/urls.py) | Python | 11 | 0 | 2 | 13 |
-| [support/views.py](/support/views.py) | Python | 199 | 1 | 21 | 221 |
+| [support/urls.py](/support/urls.py) | Python | 15 | 0 | 2 | 17 |
+| [support/views.py](/support/views.py) | Python | 250 | 1 | 24 | 275 |
 
 [summary](results.md)
