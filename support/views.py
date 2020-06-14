@@ -188,11 +188,12 @@ def rate(request):
             rq.sr_status =  5
             ratings.srr_stars = data['stars']
             ratings.srr_content = data['content']
+            rq.save()
             ratings.save()
         except:
             JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         return JsonResponse({'success':True})
-    return JsonResponse({'success':True,'exc':'bad method'})
+    return JsonResponse({'success':False,'exc':'bad method'})
 
 def getRateFor(request):
     if(request.method == 'POST'):
@@ -209,7 +210,7 @@ def getRateFor(request):
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         return JsonResponse({'success':True,'data':ratingsToJson(rt)})
-    return JsonResponse({'success':True,'exc':'bad method'})
+    return JsonResponse({'success':False,'exc':'bad method'})
 
 def ratingsToJson(rt):
     if(rt == None):
@@ -233,7 +234,7 @@ def closeRq(request):
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         return JsonResponse({'success':True})
-    return JsonResponse({'success':True,'exc':'bad method'})
+    return JsonResponse({'success':False,'exc':'bad method'})
 
 def appointRes(request):
     if(request.method == 'POST'):
@@ -252,7 +253,7 @@ def appointRes(request):
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })
         return JsonResponse({'success':True})
-    return JsonResponse({'success':True,'exc':'bad method'})
+    return JsonResponse({'success':False,'exc':'bad method'})
 
 def appointFix(request):
     if(request.method == 'POST'):
@@ -266,6 +267,7 @@ def appointFix(request):
             if(res.u_type != 2):
                 return JsonResponse({'success': False, 'exc': 'WRONG ACCOUNT PRIV', })
             rq.sr_status =  3
+            rq.res_u_id = res
             rq.save()
         except:
             return JsonResponse({'success': False, 'exc': 'ACCOUNT_WRONG_FORMAT', })

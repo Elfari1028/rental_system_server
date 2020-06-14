@@ -10,6 +10,7 @@ urlpatterns = [
         path('reply/',views.replyToRequest,name='reply'),
         path('dispatch/',views.appointFix,name='dispatch'),
         path('pickup/',views.appointRes,name='pickup'),
-        path('close/',views.closeRq,name='close')
+        path('close/',views.closeRq,name='close'),
+        path('rate/',views.rate,name='close')
     ])),
 ]
